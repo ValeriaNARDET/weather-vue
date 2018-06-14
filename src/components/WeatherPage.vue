@@ -31,7 +31,6 @@ import DateSwitches from './DateSwitches.vue'
 <style scoped>
 	.weather-page {
 		position: absolute;
-		right: 50px;
 		margin: auto;
 		border-radius: 15px;
 		background-color: #fff;

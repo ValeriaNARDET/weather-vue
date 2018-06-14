@@ -21,12 +21,10 @@ export default {
 
 <style>
 #app {
-  width: 700px;
-  height: 700px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  background-color: #252599;
-  float: right;
+  width: 800px;
+  height: 1000px;
+  padding: 50px;
+  background-color: #feff2c73;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
