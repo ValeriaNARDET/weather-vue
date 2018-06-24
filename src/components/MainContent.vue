@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import {WEATHER_DATA} from '../service/request.js'
+  import {WEATHER_DATA, GET_WEATHER_BY_LOCATION} from '../service/request.js'
 
   export default {
   name: 'MainContent',
@@ -49,6 +49,9 @@
         .catch( e => {
           console.log( e )
         })
+    },
+    getWeatherByLocation(){
+      GET_WEATHER_BY_LOCATION()
     }
   },
   computed: {
@@ -82,6 +85,7 @@
 	}
   },
   created(){
+    this.getWeatherByLocation()
     this.getWeather()
   }
 }
