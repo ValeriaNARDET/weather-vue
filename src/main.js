@@ -16,17 +16,6 @@ new Vue({
      sourceURL: 'https://www.gismeteo.ru/api/',
      rowData: []
   },
-  // created: function() {
-  //   this.$http.get(sourceURL).then(
-  //     function (response) { // Success.
-  //       this.rowData = response.data;
-  //       console.log("it is doable")
-  //     },
-  //     function (response) { // Error.
-  //       console.log('An error occurred.');
-  //     }
-  //   )
-  // },
   store: store,
   // router: router,
   render: h => h(App)

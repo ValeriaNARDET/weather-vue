@@ -7,9 +7,6 @@
 <script>
 
 import WeatherPage from './components/WeatherPage'
-import DateSwitches from './components/DateSwitches.vue'
-import Indicators from './components/Indicators.vue'
-import MainContent from './components/MainContent'
 
 export default {
   name: 'app',

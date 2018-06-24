@@ -8,12 +8,17 @@
 			<p class="content__temperature" v-text='temperature'>79&#176;</p>
 			<div class="content__status">
 				<p class="content__sky-status">Cloudy Skies</p>
-				<p class="content__city">Sicklerville, New Jersey</p>
+				<input 
+					class="content__city" 
+					type="text" 
+					name="location" 
+					@keyup.enter="takeValue()"
+					placeholder="Sicklerville, New Jersey">
 			</div>
 			<div class="content__date">
-				<p class="content__forecast-dat" v-text='dateMonth'></p>
+				<p class="content__forecast-dat">{{currentMonth}}</p>
 				<slot></slot>
-				<p class="content__forecast-dat" v-text='dateDay'></p>
+				<p class="content__forecast-dat">{{currentDate}}</p>
 			</div>
 		</div>
 	</div>
@@ -27,11 +32,14 @@ export default {
   },
   methods: {
   	loading() {
-  	}
+  	},
+  	takeValue(event) {
+        console.log(event.target.value)
+    }
   },
   computed: {
     temperature() {
-      return this.$store.state.temperature
+      return this.$store.getters.temperature
     },
     description() {
       return this.$store.state.description
@@ -44,7 +52,20 @@ export default {
     },
     dateDay() {
       return this.$store.state.dateDay
-    }
+    },
+    currentMonth: function () {    
+    	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var date = new Date();
+		var mm = months[date.getMonth()];
+		console.log(mm)
+		return mm;
+	},
+    currentDate: function () {
+		var date = new Date();
+		var dd = date.getDate();
+		console.log(dd)
+		return dd;
+	}
   }
 }
 </script>
@@ -100,7 +121,7 @@ export default {
 			flex-direction: column;
 			justify-content: flex-end;
 			align-items: flex-start;
-			padding-right: 10px;
+			padding-right: 15px;
 		}
 			.content__sky-status {
 				margin: 5px 0;
@@ -110,12 +131,46 @@ export default {
 				color: #bac2c6;
 			}
 			.content__city {
-				margin: 0  0 20px;
+				border: none;
+				margin: 0  0 18px;
 				font-size: 16px;
 				font-family: 'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif;
 				font-weight: 600;
 				color: #a2a9ad;
+				background-color: transparent;
 			}
+				.content__city:focus {
+					outline-offset: 0;
+					outline: none;
+				}
+				.content__city::-webkit-input-placeholder {
+					margin: 0  0 20px;
+					font-size: 16px;
+					font-family: 'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif;
+					font-weight: 600;
+					color: #a2a9ad;
+				}
+				.content__city::-moz-placeholder {
+					margin: 0  0 20px;
+					font-size: 16px;
+					font-family: 'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif;
+					font-weight: 600;
+					color: #a2a9ad;
+				}
+				.content__city:-ms-input-placeholder {
+					margin: 0  0 20px;
+					font-size: 16px;
+					font-family: 'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif;
+					font-weight: 600;
+					color: #a2a9ad;
+				}
+				.content__city:-moz-placeholder {
+					margin: 0  0 20px;
+					font-size: 16px;
+					font-family: 'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif;
+					font-weight: 600;
+					color: #a2a9ad;
+				}
 		.content__date {
 			right: 0;
 			bottom: 0;
@@ -129,7 +184,7 @@ export default {
 			justify-content: center;
 			-ms-align-items: center;
 			align-items: center;
-			padding: 0 20px;
+			padding: 0 16px;
 			text-transform: uppercase;
 			font-size: 14px;
 			font-family: 'OpenSans-Bold', 'Open Sans', sans-serif;

@@ -5,7 +5,7 @@ Vue.use (Vuex)
 
 export const store = new Vuex.Store({
 	state: {
-		temperature: '79',//&#176;	
+		temperatureT: '79',//  &#176; - html symbol
 		description: "Cloudy Skies",
 		area: "Sicklerville, New Jersey",
 		dateMonth: "may",
@@ -14,7 +14,17 @@ export const store = new Vuex.Store({
 		humidity: "33%",
 		cloudiness: '83%'
 	},
-	getters: {},
+	getters: {
+	    temperature: state => {
+	      return state.temperatureT + '°';
+	    },
+		currentDate: (state, getters) => {
+			var date = new Date();
+			var mm = date.getMonth() + 1;
+			console.log(mm)
+		  	return getters.currentDate.mm;
+		}
+	},
 	actions: {},
 	mutations: {}
 })
