@@ -3,15 +3,15 @@
 		<button class="reload-btn" @click="loading()">
 			<i class="fas fa-redo"></i>
 		</button>
-		<img class="weather-status-img" src="../images/sun-cloudy.png" height="115	" width="139" alt="rain">
+		<img class="weather-status-img" :src="src" height="64	" width="64" alt="rain">
 		<div class="content">
 			<p class="content__temperature" v-text='temperature'>79&#176;</p>
 			<div class="content__status">
-				<p class="content__sky-status" v-text="description"></p>
-				<input 
-					class="content__city" 
+				<p class="content__sky-status" v-html='description'></p>
+				<input
+					class="content__city"
 					type="text"
-					name="location" 
+					name="location"
 					@keyup.enter="takeValue()"
 					:placeholder="area">
 			</div>
@@ -25,16 +25,30 @@
 </template>
 
 <script>
-export default {
+  import {WEATHER_DATA} from '../service/request.js'
+
+  export default {
   name: 'MainContent',
   data () {
-    return {}
+    return {
+      src: ''
+    }
   },
   methods: {
   	loading() {
+      this.getWeather()
   	},
   	takeValue(event) {
         console.log(event.target.value)
+    },
+    getWeather(){
+      WEATHER_DATA.get('baseURL')
+        .then( res  => {
+          this.src = res.data.current.condition.icon
+        })
+        .catch( e => {
+          console.log( e )
+        })
     }
   },
   computed: {
@@ -53,19 +67,22 @@ export default {
     dateDay() {
       return this.$store.state.dateDay
     },
-    currentMonth: function () {    
+    currentMonth: function () {
     	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var date = new Date();
 		var mm = months[date.getMonth()];
-		// console.log(mm)
+		console.log(mm)
 		return mm;
 	},
     currentDate: function () {
 		var date = new Date();
 		var dd = date.getDate();
-		// console.log(dd)
+		console.log(dd)
 		return dd;
 	}
+  },
+  created(){
+    this.getWeather()
   }
 }
 </script>
