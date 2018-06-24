@@ -20,16 +20,21 @@ import {WEATHER_DATA} from '../service/request.js'
 		data () {
 			return {}
 		},
-  		created: function() {
-  			WEATHER_DATA.get('baseURL')
-  				.then( res  => {
-  					console.log( res )
-  				})
-  				.catch( e => {
-  					console.log( e )
-  				})
-  			}
-		}
+    methods: {
+      getWeather(){
+        WEATHER_DATA.get('baseURL')
+          .then( res  => {
+            console.log( res )
+          })
+          .catch( e => {
+            console.log( e )
+          })
+      }
+    },
+    created: function() {
+      this.getWeather()
+    }
+  }
 </script>
 
 <style scoped>
