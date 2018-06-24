@@ -7,13 +7,13 @@
 		<div class="content">
 			<p class="content__temperature" v-text='temperature'>79&#176;</p>
 			<div class="content__status">
-				<p class="content__sky-status">Cloudy Skies</p>
+				<p class="content__sky-status" v-text="description"></p>
 				<input 
 					class="content__city" 
-					type="text" 
+					type="text"
 					name="location" 
 					@keyup.enter="takeValue()"
-					placeholder="Sicklerville, New Jersey">
+					:placeholder="area">
 			</div>
 			<div class="content__date">
 				<p class="content__forecast-dat">{{currentMonth}}</p>
@@ -57,13 +57,13 @@ export default {
     	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var date = new Date();
 		var mm = months[date.getMonth()];
-		console.log(mm)
+		// console.log(mm)
 		return mm;
 	},
     currentDate: function () {
 		var date = new Date();
 		var dd = date.getDate();
-		console.log(dd)
+		// console.log(dd)
 		return dd;
 	}
   }

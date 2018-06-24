@@ -25,6 +25,23 @@ export const store = new Vuex.Store({
 		  	return getters.currentDate.mm;
 		}
 	},
-	actions: {},
-	mutations: {}
+	actions: {
+    	changeWeatherData: (context, someAttr) => {
+    		console.log("Data comes", someAttr);
+    		context.commit('WeatherChanged', someAttr)
+    	}
+    },
+	mutations: {
+    	WeatherChanged: (state, someAttr) => {
+    		console.log("Data changed in mutations")
+    		for ( var field in someAttr ) {
+    			console.log( field )
+    			if(field === 'dateMonth' || field === 'dateDay'){
+    				console.log( field )
+    			}else{
+    				state[field] = someAttr[field]    				
+    			}
+    		}
+    	}
+    }
 })

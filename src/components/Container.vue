@@ -10,26 +10,31 @@
 import MainContent from './MainContent.vue'
 import Indicators from './Indicators.vue'
 import {WEATHER_DATA} from '../service/request.js'
+import { PARSE_WEATHER_DATA } from '../service/parse.js'
 
-	export default {
-		name: 'Container',
-		components: {
-			"main-content": MainContent,
-			"indicators": Indicators,
-		},
-		data () {
-			return {}
-		},
+export default {
+	name: 'Container',
+	components: {
+		"main-content": MainContent,
+		"indicators": Indicators,
+	},
+	data () {
+		return {}
+	},
     methods: {
-      getWeather(){
-        WEATHER_DATA.get('baseURL')
-          .then( res  => {
-            console.log( res )
-          })
-          .catch( e => {
-            console.log( e )
-          })
-      }
+    	getWeather(){
+    	  WEATHER_DATA.get('baseURL')
+    	    .then( res  => {
+    	    	this.changeWeather(PARSE_WEATHER_DATA( res ))
+    	    	 // console.log()
+    	    })
+    	    .catch( e => {
+    	      console.log( e )
+    	    })
+    	},
+    	changeWeather(someAttr){
+    	  this.$store.dispatch("changeWeatherData", someAttr)
+    	},
     },
     created: function() {
       this.getWeather()

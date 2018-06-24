@@ -26,13 +26,13 @@ export default {
   methods: {},
   computed: {
   	mph() {
-  		return this.$store.state.mph
+  		return this.$store.state.mph + " mph"
   	},
   	humidity() {
-  		return this.$store.state.humidity
+  		return this.$store.state.humidity + " %"
   	},
   	cloudiness() {
-  		return this.$store.state.cloudiness
+  		return 100 - +this.$store.state.cloudiness + " %"
   	}
   }
 }
