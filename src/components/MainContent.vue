@@ -1,9 +1,13 @@
 <template>
 	<div class="wrapper">
-		<button class="reload-btn" @click="loading()">
-			<i class="fas fa-redo"></i>
+		<transition name="slide-fade">
+    
+  		</transition>
+		<button class="reload-btn" v-if="loading">
+			<clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+			<!-- <i class="fas fa-redo"></i> -->
 		</button>
-		<img class="weather-status-img" :src="src" height="64	" width="64" alt="rain">
+		<img class="weather-status-img" :src="src" height="109" width="109" alt="rain">
 		<div class="content">
 			<p class="content__temperature" v-text='temperature'>79&#176;</p>
 			<div class="content__status">
@@ -16,9 +20,9 @@
 					:placeholder="area">
 			</div>
 			<div class="content__date">
-				<p class="content__forecast-dat">{{currentMonth}}</p>
+				<p class="content__forecast-dat" v-text='currentMonth'></p>
 				<slot></slot>
-				<p class="content__forecast-dat">{{currentDate}}</p>
+				<p class="content__forecast-dat" v-text='currentDate'></p>
 			</div>
 		</div>
 	</div>
@@ -26,13 +30,20 @@
 
 <script>
   import {WEATHER_DATA} from '../service/request.js'
+  import ClipLoader from './clipLoader.vue'
 
   export default {
   name: 'MainContent',
   data () {
     return {
-      src: ''
+      src: '',
+      loading: false,
+      color: 'grey',
+      size: '18px'
     }
+  },
+  components: {
+  	ClipLoader
   },
   methods: {
   	loading() {
@@ -49,6 +60,12 @@
         .catch( e => {
           console.log( e )
         })
+    },
+    start() {
+    	this.loading = true
+    },
+    finish() {
+    	this.loading = false
     }
   },
   computed: {
@@ -114,7 +131,7 @@
 			color: #d5dbdc;
 		}
 	.weather-status-img {
-		margin: 66px auto;
+		margin: 50px auto;
 	}
 	.content {
 		position: relative;
@@ -123,7 +140,7 @@
 	}
 		.content__temperature {
 			margin: 10px 20px;
-			font-size: 58px;
+			font-size: 48px;
 			font-family: 'ProximaNova-Light', 'Proxima Nova', Arial, sans-serif;
 			line-height: 1;
 			font-weight: 300;

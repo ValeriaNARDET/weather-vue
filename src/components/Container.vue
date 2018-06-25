@@ -26,7 +26,6 @@ export default {
     	  WEATHER_DATA.get('baseURL')
     	    .then( res  => {
     	    	this.changeWeather(PARSE_WEATHER_DATA( res ))
-    	    	 // console.log()
     	    })
     	    .catch( e => {
     	      console.log( e )
