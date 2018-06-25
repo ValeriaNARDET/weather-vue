@@ -15,6 +15,5 @@ export const PARSE_WEATHER_DATA = resronse => {
 	data.mph = resronse.data.current.wind_mph ;
 	data.humidity = resronse.data.current.humidity;
 	data.cloudiness = resronse.data.current.cloud;
-	// console.log()
 	return data
 }

@@ -3,7 +3,7 @@
 		<transition name="slide-fade">
     
   		</transition>
-		<button class="reload-btn" v-if="loading">
+		<button class="reload-btn">
 			<clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
 			<!-- <i class="fas fa-redo"></i> -->
 		</button>
