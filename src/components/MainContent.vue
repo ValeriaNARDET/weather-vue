@@ -1,11 +1,8 @@
 <template>
 	<div class="wrapper">
-		<button class="reload-btn" @click="loading()">
-			<i class="fas fa-redo"></i>
-		</button>
 		<img class="weather-status-img" :src="src" height="64	" width="64" alt="rain">
 		<div class="content">
-			<p class="content__temperature" v-text='temperature'>79&#176;</p>
+			<p class="content__temperature" v-text='temperature'></p>
 			<div class="content__status">
 				<p class="content__sky-status" v-html='description'></p>
 				<input
@@ -16,9 +13,8 @@
 					:placeholder="area">
 			</div>
 			<div class="content__date">
-				<p class="content__forecast-dat">{{currentMonth}}</p>
-				<slot></slot>
-				<p class="content__forecast-dat">{{currentDate}}</p>
+				<p class="content__forecast-date">{{currentMonth}}</p>
+				<p class="content__forecast-date">{{currentDate}}</p>
 			</div>
 		</div>
 	</div>
@@ -35,9 +31,6 @@
     }
   },
   methods: {
-  	loading() {
-      this.getWeather()
-  	},
   	takeValue(event) {
         console.log(event.target.value)
     },
@@ -70,14 +63,13 @@
     currentMonth: function () {
     	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var date = new Date();
+		console.log(date)
 		var mm = months[date.getMonth()];
-		console.log(mm)
 		return mm;
 	},
     currentDate: function () {
 		var date = new Date();
 		var dd = date.getDate();
-		console.log(dd)
 		return dd;
 	}
   },
@@ -90,40 +82,21 @@
 <style scoped>
 .wrapper {
 	position: relative;
-	margin-bottom: 18px;
+	border-radius: 15px 15px 0 0;
+	padding-bottom: 18px;
+	background-color: #fff;
 }
-	.reload-btn {
-		position: absolute;
-		top: 0;
-		right: 0;
-		padding: 17px;
-		border: none;
-		background-color: transparent;
-	}
-	.reload-btn:focus {
-		outline: none;
-		outline-offset: 0;
-		-webkit-animation: loader-1 1.5s linear 3;
-		animation: loader-1 1.5s linear 3;
-	}
-		.fas {
-			font-weight: 600;
-		}
-		.fa-redo {
-			font-size: 22px;
-			color: #d5dbdc;
-		}
 	.weather-status-img {
 		margin: 66px auto;
 	}
 	.content {
 		position: relative;
 		display: flex;
-		justify-content: flex-start;
+		justify-content: space-between;
 	}
 		.content__temperature {
 			margin: 10px 20px;
-			font-size: 58px;
+			font-size: 38px;
 			font-family: 'ProximaNova-Light', 'Proxima Nova', Arial, sans-serif;
 			line-height: 1;
 			font-weight: 300;
@@ -189,9 +162,6 @@
 					color: #a2a9ad;
 				}
 		.content__date {
-			right: 0;
-			bottom: 0;
-			top: 0;
 			display: -webkit-flex;
 			display: -moz-flex;
 			display: -ms-flex;
@@ -209,28 +179,7 @@
 			color: #fff;
 			background-color: #54bae6;
 		}
-			.content__forecast-dat {
+			.content__forecast-date {
 				margin: 3px auto;
 			}
-
-@-webkit-keyframes loader-1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes loader-1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 </style>

@@ -9,12 +9,12 @@ export const PARSE_WEATHER_DATA = resronse => {
 		humidity: null,
 		cloudiness: null
 	}
-	data.temperatureT = resronse.data.current.temp_c;
-	data.description = resronse.data.current.condition.text;
-	data.area = resronse.data.location.name + ', ' + resronse.data.location.country ;
-	data.mph = resronse.data.current.wind_mph ;
-	data.humidity = resronse.data.current.humidity;
-	data.cloudiness = resronse.data.current.cloud;
-	// console.log()
+	var res = resronse.data;
+	data.temperatureT = res.current.temp_c;
+	data.description = res.current.condition.text;
+	data.area = res.location.name + ', ' + res.location.country;
+	data.mph = res.current.wind_mph ;
+	data.humidity = res.current.humidity;
+	data.cloudiness = res.current.cloud;
 	return data
 }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import router from './router'
+import router from './router/router'
 import VueResource from 'vue-resource'
 import { store } from './store/store'
 
@@ -17,6 +17,6 @@ new Vue({
      rowData: []
   },
   store: store,
-  // router: router,
+  router: router,
   render: h => h(App)
 })

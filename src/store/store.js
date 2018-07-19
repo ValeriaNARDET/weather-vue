@@ -5,7 +5,7 @@ Vue.use (Vuex)
 
 export const store = new Vuex.Store({
 	state: {
-		temperatureT: '79',//  &#176; - html symbol
+		temperatureT: '23',
 		description: "Cloudy Skies",
 		area: "Sicklerville, New Jersey",
 		dateMonth: "may",
@@ -21,13 +21,11 @@ export const store = new Vuex.Store({
 		currentDate: (state, getters) => {
 			var date = new Date();
 			var mm = date.getMonth() + 1;
-			console.log(mm)
 		  	return getters.currentDate.mm;
 		}
 	},
 	actions: {
     	changeWeatherData: (context, someAttr) => {
-    		console.log("Data comes", someAttr);
     		context.commit('WeatherChanged', someAttr)
     	}
     },
@@ -35,7 +33,7 @@ export const store = new Vuex.Store({
     	WeatherChanged: (state, someAttr) => {
     		console.log("Data changed in mutations")
     		for ( var field in someAttr ) {
-    			console.log( field )
+    			// console.log( field )
     			if(field === 'dateMonth' || field === 'dateDay'){
     				console.log( field )
     			}else{

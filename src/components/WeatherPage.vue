@@ -4,7 +4,6 @@
 		   v-bind:is="currentTab.component"
 		   class="tab"
 		></component>
-		<!-- <container></container> -->
 		<!-- <date-switches></date-switches> -->
 		<div class="date-switches">
 			<button
@@ -14,7 +13,7 @@
 				v-bind:class="['tab-button', { active: currentTab.name === tab.name }]"
 				v-html="tab.html"
 				v-on:click="currentTab = tab"
-				@click="alert('edde')"
+				@click="console.log('edde')"
 			></button>
 		</div>
 	</div>
@@ -23,7 +22,6 @@
 <script>
 
 import Container from './Container.vue'
-import DateSwitches from './DateSwitches.vue'
 
 var tabs = [
   {
@@ -35,7 +33,7 @@ var tabs = [
     }
   },
   {
-    component: Container,
+    component: ThreeDays,
     	html: `<i class="far fa-circle"></i>`
     	,
     props: {
@@ -56,7 +54,7 @@ var tabs = [
 		name: 'WeatherPage',
 		components: {
 			"container": Container,
-			"date-switches": DateSwitches,
+			// "date-switches": DateSwitches,
 		},
 		data () {
 			return {
