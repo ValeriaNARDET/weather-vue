@@ -47,29 +47,29 @@ export default {
 	data () {
 		return {}
 	},
-	// computed: {
- //    	currentMonth: function () {
-	// 		return months[date.getMonth()];
-	// 	},
- //    	currentDate: function () {
-	// 		return date.getDate();
-	// 	},
-	// 	tommorowMonth: function() {
-	// 		return months[tommorow.getMonth()];
-	// 	},
-	// 	tommorowDate: function() {
-	// 		return tommorow.getDate();
-	// 	},
-	// 	nextMonth: function() {
-	// 		return months[nextDay.getMonth()];
-	// 	},
-	// 	nextDate: function() {
-	// 		return nextDay.getDate();
-	// 	},
-	// 	temperature() {
-	// 		return this.$store.getters.temperature;
-	// 	}
-	// }
+	computed: {
+    	currentMonth: function () {
+			return months[date.getMonth()];
+		},
+    	currentDate: function () {
+			return date.getDate();
+		},
+		tommorowMonth: function() {
+			return months[tommorow.getMonth()];
+		},
+		tommorowDate: function() {
+			return tommorow.getDate();
+		},
+		nextMonth: function() {
+			return months[nextDay.getMonth()];
+		},
+		nextDate: function() {
+			return nextDay.getDate();
+		},
+		temperature() {
+			return this.$store.getters.temperature;
+		}
+	}
 }
 
 </script>
