@@ -37,6 +37,10 @@
 </template>
 
 <script>
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	var date = new Date();
+	var tommorow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+	var nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000 * 2);
 
 export default {
 	name: 'ThreeDays',
@@ -45,41 +49,22 @@ export default {
 	},
 	computed: {
     	currentMonth: function () {
-    		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-			var date = new Date();
-			var mm = months[date.getMonth()];
-			return mm;
+			return months[date.getMonth()];
 		},
     	currentDate: function () {
-			var date = new Date();
-			var dd = date.getDate();
-			return dd;
+			return date.getDate();
 		},
 		tommorowMonth: function() {
-    		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-			var tommorow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-			var tm = months[tommorow.getMonth()];
-			console.log(tm)
-			return tm;
+			return months[tommorow.getMonth()];
 		},
 		tommorowDate: function() {
-			var tommorow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-			var td = tommorow.getDate();
-			console.log(td)
-			return td;
+			return tommorow.getDate();
 		},
 		nextMonth: function() {
-    		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-			var next = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 2);
-			var nm = months[next.getMonth()];
-			console.log(nm)
-			return nm;
+			return months[nextDay.getMonth()];
 		},
 		nextDate: function() {
-			var next = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 2);
-			var nd = next.getDate();
-			console.log(nd)
-			return nd;
+			return nextDay.getDate();
 		},
 		temperature() {
 			return this.$store.getters.temperature;
