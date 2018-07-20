@@ -91,7 +91,7 @@ export default {
 
 <style scoped>
 .three-days {
-	min-height: 400px;
+	min-height: 380px;
 	margin: auto;
 	padding-top: 80px;
 	border-radius: 15px 15px 0 0;
